@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     
     <style>
-        /* CSS VARIABLES - GREEN THEME */
+       
         :root {
-            --primary: #10b981; /* Emerald Green */
+            --primary: #10b981; 
             --primary-hover: #059669;
             --bg-dark: #020617;
             --card-bg: #1e293b;
@@ -30,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* MAIN CARD CONTAINER */
+     
         .dashboard-card {
             width: 100%;
             max-width: 900px; /* Wide card like the image */
@@ -164,11 +164,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script>
-    // --- 1. SETUP MAP ---
-    // Initialize map centered on Africa (zoom 2)
+   
     var map = L.map('map').setView([0, 0], 2);
 
-    // Add Dark Mode Map Tiles (CartoDB Dark Matter) to match the theme
+ 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
         subdomains: 'abcd',
@@ -177,7 +176,7 @@
 
     let userMarker, targetMarker, routeLine;
 
-    // --- 2. MAIN FUNCTION ---
+   
     async function calculateRoute() {
         const city = document.getElementById('destination').value;
         if(!city) return alert("Please enter a city name!");
@@ -185,21 +184,21 @@
         document.getElementById('distDisplay').innerText = "Loading...";
 
         try {
-            // A. Get User Location
+          
             const userPos = await getUserLocation();
             const uLat = userPos.coords.latitude;
             const uLon = userPos.coords.longitude;
             
-            // Update UI
+           
             document.getElementById('myLoc').innerText = `${uLat.toFixed(2)}, ${uLon.toFixed(2)}`;
             
-            // Plot User on Map (Green Icon)
+           
             if(userMarker) map.removeLayer(userMarker);
             userMarker = L.circleMarker([uLat, uLon], {
                 color: '#10b981', radius: 8, fillOpacity: 1
             }).addTo(map).bindPopup("You are here").openPopup();
 
-            // B. Get Target Location (Geocoding)
+          
             const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}`);
             const geoData = await geoRes.json();
             
@@ -208,32 +207,32 @@
             const tLat = parseFloat(geoData[0].lat);
             const tLon = parseFloat(geoData[0].lon);
             
-            // Update UI
+           
             document.getElementById('targetLoc').innerText = geoData[0].name || city;
 
-            // Plot Target on Map (Red Icon)
+            
             if(targetMarker) map.removeLayer(targetMarker);
             targetMarker = L.circleMarker([tLat, tLon], {
                 color: '#ef4444', radius: 8, fillOpacity: 1
             }).addTo(map).bindPopup(city);
 
-            // C. Draw the Line (Dashed)
+            
             if(routeLine) map.removeLayer(routeLine);
             var latlngs = [
                 [uLat, uLon],
                 [tLat, tLon]
             ];
             routeLine = L.polyline(latlngs, {
-                color: '#10b981', // Green Line
+                color: '#10b981',
                 weight: 3,
                 opacity: 0.7,
-                dashArray: '10, 10' // Makes it dashed like the image
+                dashArray: '10, 10'
             }).addTo(map);
 
-            // Zoom map to fit both points
+           
             map.fitBounds(routeLine.getBounds(), {padding: [50, 50]});
 
-            // D. Calculate Distance (Haversine)
+           
             const km = getDistance(uLat, uLon, tLat, tLon);
             document.getElementById('distDisplay').innerHTML = `${km.toFixed(2)} <span style="font-size: 1rem; color: #fff;">km</span>`;
 
@@ -243,7 +242,7 @@
         }
     }
 
-    // Helper: Promisify Geolocation
+  
     function getUserLocation() {
         return new Promise((resolve, reject) => {
             if(!navigator.geolocation) reject(new Error("Geolocation not supported"));
@@ -251,7 +250,7 @@
         });
     }
 
-    // Helper: Haversine Formula
+    
     function getDistance(lat1, lon1, lat2, lon2) {
         const R = 6371; 
         const dLat = (lat2 - lat1) * Math.PI / 180;
