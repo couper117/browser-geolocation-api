@@ -33,36 +33,39 @@
      
         .dashboard-card {
             width: 100%;
-            max-width: 900px; /* Wide card like the image */
+            max-width: 900px;
             background: var(--card-bg);
             border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            overflow: hidden; /* Keeps the map inside the rounded corners */
+            overflow: hidden; 
             display: flex;
-            flex-direction: column; /* Stacks Map on Top, Form on Bottom */
-            border: 1px solid rgba(16, 185, 129, 0.2); /* Subtle green border */
+            flex-direction: column; 
+            border: 1px solid rgba(16, 185, 129, 0.2); 
         }
 
-        /* TOP SECTION: THE MAP */
         #map {
-            height: 400px; /* Big visual map */
+            height: 400px; 
             width: 100%;
             background-color: #0f172a;
             z-index: 1;
         }
 
-        /* BOTTOM SECTION: CONTROLS */
         .controls {
             padding: 30px;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Split into two columns */
+            grid-template-columns: 1fr 1fr; 
             gap: 30px;
             background: linear-gradient(to bottom, #1e293b, #0f172a);
         }
 
-        /* Left Side of Bottom: Title & Input */
-        .search-area h1 { margin: 0 0 5px 0; font-size: 1.5rem; letter-spacing: -0.5px; }
-        .search-area p { margin: 0 0 20px 0; color: var(--text-dim); font-size: 0.9rem; }
+        
+        .search-area h1 { margin: 0 0 5px 0;
+            font-size: 1.5rem; 
+            letter-spacing: -0.5px; }
+         .search-area p { margin: 0 0 20px 0;
+            color: var(--text-dim);
+             font-size: 0.9rem;
+             }
 
         .input-wrapper {
             position: relative;
@@ -71,7 +74,7 @@
         
         input {
             width: 100%;
-            padding: 15px 15px 15px 45px; /* Space for icon */
+            padding: 15px 15px 15px 45px;
             background: rgba(0,0,0,0.3);
             border: 1px solid #334155;
             border-radius: 12px;
@@ -81,9 +84,10 @@
             outline: none;
             transition: border-color 0.3s;
         }
-        input:focus { border-color: var(--primary); }
+        input:focus { border-color: var(--primary);
+         }
 
-        /* Search Icon (Simulated with CSS) */
+        
         .search-icon {
             position: absolute;
             left: 15px;
@@ -104,9 +108,11 @@
             transition: background 0.2s;
             width: 100%;
         }
-        button:hover { background: var(--primary-hover); color: white; }
+        button:hover { 
+            background: var(--primary-hover); 
+            color: white;
+         }
 
-        /* Right Side of Bottom: Metrics */
         .metrics-area {
             display: flex;
             flex-direction: column;
@@ -117,15 +123,36 @@
             border-left: 4px solid var(--primary);
         }
 
-        .distance-label { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-        .distance-value { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin: 5px 0; }
-        .coords-box { font-family: monospace; color: var(--text-dim); font-size: 0.9rem; margin-top: 10px; }
+        .distance-label {
+             font-size: 0.85rem;
+             color: var(--text-dim); 
+             text-transform: uppercase;
+              letter-spacing: 1px;
+             }
+        .distance-value { 
+            font-size: 2.5rem; 
+            font-weight: 800; color: var(--primary);
+             margin: 5px 0;
+             }
+        .coords-box { 
+            font-family: monospace;
+             color: var(--text-dim); 
+             font-size: 0.9rem;
+             margin-top: 10px;
+             }
         
-        .dot { height: 10px; width: 10px; background-color: var(--primary); border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .dot { 
+            height: 10px;
+             width: 10px; 
+             background-color: var(--primary); 
+             border-radius: 50%;
+             display: inline-block; 
+             margin-right: 5px;
+             }
 
-        /* Mobile Responsive */
+       
         @media (max-width: 700px) {
-            .controls { grid-template-columns: 1fr; } /* Stack vertically on phone */
+            .controls { grid-template-columns: 1fr; }
             #map { height: 300px; }
         }
     </style>
